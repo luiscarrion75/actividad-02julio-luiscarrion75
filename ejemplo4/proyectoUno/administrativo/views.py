@@ -136,7 +136,14 @@ def crear_numero_telefonico_estudiante(request, id):
     return render(request, 'crearNumeroTelefonicoEstudiante.html', diccionario)
 
 
-def leer_numeros(request,id):
-    numeros = NumeroTelefonico.objects.get(pk=id)
-    template = {'telefono': telefonos}
-    return render(request, 'obtenerTelefonos.html', template)
+def listar_numeros_telefonicos(request):
+    """
+    Trae todos los números telefónicos con su respectivo estudiante.
+    """
+    # Traemos todos los números telefónicos
+    telefonos = NumeroTelefonico.objects.select_related('estudiante').all()
+    
+    # Pasamos la información al template
+    informacion_template = {'telefonos': telefonos}
+    return render(request, 'obtenerTelefonos.html', informacion_template)
+

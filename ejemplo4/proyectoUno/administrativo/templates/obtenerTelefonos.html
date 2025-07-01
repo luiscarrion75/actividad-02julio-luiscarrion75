@@ -1,40 +1,33 @@
 {% extends "master.html" %}
 
+{% block title %}
+  Lista de Teléfonos
+{% endblock %}
+
 {% block content %}
-<h2>Numeros telefonicos</h2>
-<table id="tabla_datos">
+  <h2>Listado de Números Telefónicos</h2>
+  <table id="tablaTelefonos" class="display">
+    <thead>
+      <tr>
+        <th>Teléfono</th>
+        <th>Tipo</th>
+        <th>Estudiante</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for telefono in telefonos %}
+      <tr>
+        <td>{{ telefono.telefono }}</td>
+        <td>{{ telefono.tipo }}</td>
+        <td>{{ telefono.estudiante.nombre }} {{ telefono.estudiante.apellido }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 
-  <thead>
-    <tr>
-      <th>Estudiante</th>
-      <th>Ver Estudiante</th>
-      <th>Editar Estudiante</th>
-      <th>Eliminar Estudiante</th>
-      <th>Numeros Telefónicos </th>
-    </tr>
-  </thead>
-
-  {% for e in estudiantes %}
-  <tr>
-    <td> {{e}} </td>
-    <td> <a href="{% url 'obtener_estudiante' e.id %}">ver</a> </td>
-    <td> <a href="{% url 'editar_estudiante' e.id %}">editar</a> </td>
-    <td>
-      [<a href="{% url 'eliminar_estudiante' e.id %}"
-      onclick="return confirm('¿Está seguro de la eliminación?')" >
-      eliminar</a>]
-    </td>
-    <td>
-      <ul>
-        {% for t in e.numeros_telefonicos.all %}
-          <li>
-            <span>{{t.telefono}} - {{t.tipo}} - [<a href="{% url 'editar_numero_telefonico' t.id %}">editar</a>] </span>
-          </li>
-        {% endfor %}
-      </ul>
-        [<a href="{% url 'crear_numero_telefonico_estudiante' e.id%}">+Teléfono</a>]
-    </td>
-
-  </tr>
-  {% endfor %}
-</table>
+  <script>
+    $(document).ready(function() {
+      $('#tablaTelefonos').DataTable();
+    });
+  </script>
+{% endblock %}
