@@ -1,0 +1,73 @@
+{% extends "master.html" %}
+
+{% block title %}Listado de Estudiantes{% endblock %}
+
+{% block content %}
+<h2 class="text-white text-center">Detalle estudiante</h2>
+<div class="row justify-content-center">
+  <div class="mb-4 mb-lg-0">
+    <div class="custom-block bg-white shadow-lg">
+      <b>Nombre:</b> {{e.nombre}}
+      </br>
+      <b>Apellido:</b> {{e.apellido}}
+      </br>
+      <b>Edad:</b> {{e.edad}}
+      </br><h2>Crear Matricula</h2>
+
+<form action="" method="post">
+  {% csrf_token %}
+  {{formulario.as_p}}
+  <p><input type='submit' value='Agregar'/></p>
+</form>
+
+[<a href="{% url 'index' %}">inicio</a>]
+{% extends "master.html" %}
+
+{% block title %}Listado de Estudiantes{% endblock %}
+
+{% block content %}
+<h1 class="text-white text-center">Crear Matricula</h1>
+<div class="row justify-content-center">
+  <div class="mb-4 mb-lg-0">
+    <div class="custom-block bg-white shadow-lg">
+      <form action="#" method="post" class="custom-form subscribe-form" role="form">
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <p><button type='submit'>Agregar</button></p>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<a href="{% url 'index' %}" class="btn custom-btn custom-border-btn smoothscroll me-4">inicio</a>
+{% endblock %}
+      <b>Cédula:</b> {{e.cedula}}
+      </br>
+      <hr>
+      <table class="table table-bordered table-hover" border="1px">
+        <tr>
+          <th><b>Módulo</b></th>
+          <th><b>comentario</b></th>
+
+        </tr>
+        {% for m in e.obtener_matriculas %}
+        <tr>
+          <td>
+            {{m.modulo.nombre}}
+          </td>
+          <td>
+            {{m.comentario}}
+          </td>
+
+        </tr>
+        {% endfor %}
+
+      </table>
+    </div>
+  </div>
+</div>
+</br>
+<a href="{% url 'index' %}" class="btn custom-btn custom-border-btn smoothscroll me-4">inicio</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}Crear matriculas{% endblock %}
+
+{% block content %}
+<h1 class="text-white text-center">Crear Matricula</h1>
+<div class="row justify-content-center">
+  <div class="mb-4 mb-lg-0">
+    <div class="custom-block bg-white shadow-lg">
+      <form action="#" method="post" class="custom-form subscribe-form" role="form">
+        {% csrf_token %}
+        {{formulario.as_p}}
+        <p><button type='submit'>Agregar</button></p>
+      </form>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+
+<a href="{% url 'index' %}" class="btn custom-btn custom-border-btn smoothscroll me-4">inicio</a>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "master.html" %}
+
+{% block title %}Listado de matriculas{% endblock %}
+
+{% block content %}
+
+<!-- Sección de matrículas -->
+<h1 class="text-white text-center">{{ mititulo }}</h1>
+
+<div class="mb-3">
+  <h6 class="text-center">Número de Matrículas: {{ numero_matriculas }}</h6>
+</div>
+<div class="row justify-content-center">
+  <div class="mb-4 mb-lg-0">
+    <div class="custom-block bg-white shadow-lg">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Estudiante</th>
+              <th>Módulo</th>
+              <th>Comentario</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in matriculas %}
+            <tr>
+              <td>
+                {{ e.estudiante.nombre }}<br>
+                {{ e.estudiante.get_tipo_estudiante_display }}<br>
+              </td>
+              <td>{{ e.modulo.nombre }}</td>
+              <td>{{ e.comentario }}</td>
+              <td>
+                <a href="{% url 'detalle_matricula' e.id %}" class="btn btn-invertido mt-3 mb-3">Ver</a>
+                <a href="{% url 'editar_matricula' e.id %}" class="btn btn-invertido mt-3 mb-3">Editar</a>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="4" class="text-center">No hay matrículas registradas.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

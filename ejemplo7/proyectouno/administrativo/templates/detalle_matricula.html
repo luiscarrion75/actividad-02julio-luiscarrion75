@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+
+{% block title %}Detalle de Matrícula{% endblock %}
+
+{% block content %}
+<h1 class="text-white text-center">Detalle de Matrícula</h1>
+
+<div class="row justify-content-center">
+  <div class="mb-4 mb-lg-0">
+    <div class="custom-block bg-white shadow-lg">
+      <h4 class="text-center mb-4">Información del estudiante:</h4>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h5>Nombre: {{ matricula.estudiante.nombre }} {{ matricula.estudiante.apellido }}</h5>
+          <p>Cédula: {{ matricula.estudiante.cedula }}</p>
+          <p>Edad: {{ matricula.estudiante.edad }} | Tipo: {{ matricula.estudiante.tipo_estudiante }}</p>
+        </li>
+        <li class="list-group-item">
+          <h5>Módulo matriculado:</h5>
+          <p>{{ matricula.modulo.nombre }}</p>
+        </li>
+        {% if matricula.comentario %}
+        <li class="list-group-item">
+          <h5>Comentario:</h5>
+          <p>{{ matricula.comentario }}</p>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <div class="text-center mt-4">
+      <a href="{% url 'index' %}" class="btn custom-btn custom-border-btn smoothscroll me-4">Inicio</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
